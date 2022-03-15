@@ -4,12 +4,12 @@
 import { ref } from "vue";
 
 function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
   }
 }
 
@@ -53,7 +53,7 @@ const time = ref(new Date)
       <button 
         class="px-8 rounded border border-slate-400 bg-white hover:bg-blue-600 hover:text-white "
         @click="openFullscreen">
-        OK ({{ time }})
+        OK
       </button>
     </div>
   </div>
