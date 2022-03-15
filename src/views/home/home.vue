@@ -2,6 +2,7 @@
 import bottomDock from './components/bottomDock.vue'
 import topBar from './components/topBar.vue'
 import listApp from '../components/app/list_app.vue'
+import rightControl from '../components/right_control.vue'
 </script>
 
 <template>
@@ -17,6 +18,8 @@ import listApp from '../components/app/list_app.vue'
         <router-view />
 
         <list-app />
+
+        <right-control />
       </div>
 
       <bottom-dock />
