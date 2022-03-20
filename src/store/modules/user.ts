@@ -1,5 +1,11 @@
+import { Commit } from 'vuex'
+import { User } from '../../models/user'
+
+interface State {
+  user: User | null
+}
 // initial state
-const state = () => ({
+const state = (): State => ({
   user: null
 })
 
@@ -8,7 +14,7 @@ const getters = {}
 
 // actions
 const actions = {
-  async guest ({commit,state}) {
+  async guest ({ commit, state }: { commit: Commit, state: State }) {
     try {
       commit('saveUser',{
         guest: true
@@ -22,7 +28,7 @@ const actions = {
 
 // mutations
 const mutations = {
-  saveUser (state, user) {
+  saveUser (state: State, user: User) {
     state.user = user
   },
 }

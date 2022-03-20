@@ -1,21 +1,25 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, onMounted, ref, watch } from "vue";
-import { useStore } from "vuex";
+import { Component, computed, defineAsyncComponent, onMounted, ref, watch } from "vue";
+// import { useStore } from "vuex";
+import store from '../../store/index'
+import { AppInfo, AppDetails } from '../../models/app'
 // import LoadingComponent from "./loading_app.vue"
 // import ErrorComponent from "./error_app.vue"
 
-const store = useStore()
+// const store = useStore()
+
 
 const props = defineProps({
   item: {
-    type: Object,
-    required: true
+    requied: true,
+    // type: Object as PropType<AppInfo>,
+    type: Object as () => AppInfo 
   }
 })
 
 // const emit = defineEmits(['load', 'delete'])
 
-const appComponent = defineAsyncComponent({
+const appComponent: Component = defineAsyncComponent({
   loader: () => import(`../../views/components/app/${props.item.name}.vue`),
   // loadingComponent: LoadingComponent,
   // errorComponent: ErrorComponent,
@@ -29,7 +33,7 @@ const appComponent = defineAsyncComponent({
   }
 })
 
-const state = ref({
+const state = ref<AppDetails>({
   full: false,
   x: 32,
   y: 32,
@@ -42,14 +46,6 @@ const state = ref({
 const app = ref<HTMLElement>(null)
 const hold = ref(false)
 
-const transition_name = ref<string>('move')
-
-watch(
-  (state.value),
-  (v) => {
-    transition_name.value = v.display ? 'move' : 'fade'
-  }
-)
 
 // toggle full app
 const toogleFullApp = () => {
@@ -64,12 +60,11 @@ const close = () => {
   store.commit('app/toogleDisplay',[ props.item.id, false ])
 }
 
-
 // drag drop app
-let currentX;
-let currentY;
-let initialX;
-let initialY;
+let currentX: number;
+let currentY: number;
+let initialX: number;
+let initialY: number;
 
 watch(
   (hold),
@@ -85,7 +80,7 @@ watch(
   }
 )
 
-const dragStart = (e: Event) => {
+const dragStart = (e: MouseEvent) => {
   increaseIndex()
 
   hold.value = true
@@ -94,7 +89,7 @@ const dragStart = (e: Event) => {
   initialY = e.clientY - state.value.y;
 }
 
-const drag = (e: Event) => {
+const drag = (e: MouseEvent) => {
   e.preventDefault()
   e.stopPropagation()
 
@@ -107,7 +102,7 @@ const drag = (e: Event) => {
   state.value.y = currentY
 }
 
-const dragEnd = (e: Event) => {
+const dragEnd = (e: MouseEvent) => {
   hold.value = false
 
   initialX = currentX;

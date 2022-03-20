@@ -1,5 +1,13 @@
+import { Commit } from 'vuex'
+import { AppInfo } from '../../models/app'
+
+interface State {
+  index_app: number,
+  list_app: Array<AppInfo>
+}
+
 // initial state
-const state = () => ({
+const state = (): State => ({
   index_app: 1,
   list_app: [
     {
@@ -91,7 +99,7 @@ const state = () => ({
       image: 'Apple AppStore icon Regular.png'
     },
     {
-      name: 'divine',
+      type: 'divine',
     },
     {
       id: 14,
@@ -122,17 +130,17 @@ const actions = {
 
 // mutations
 const mutations = {
-  async toogleShow (state, id) {
+  async toogleShow (state: State, id: Number) {
     let index = state.list_app.findIndex(v => v.id == id)
     state.list_app[index].show = !state.list_app[index].show
   },
 
-  async toogleDisplay (state, [id, display]) {
+  async toogleDisplay (state: State, [ id, display ]: [id:number, display: boolean]) {
     let index = state.list_app.findIndex(v => v.id == id)
     state.list_app[index].display = display
   },
 
-  async countIndexApp (state) {
+  async countIndexApp (state: State) {
     state.index_app = state.index_app + 1
   }
 }

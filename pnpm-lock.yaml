@@ -4,6 +4,7 @@ specifiers:
   '@tailwindcss/line-clamp': ^0.3.1
   '@vitejs/plugin-vue': ^2.2.0
   autoprefixer: ^10.4.2
+  direct-vuex: ^1.0.0-rc3
   gsap: ^3.9.1
   path: ^0.12.7
   popmotion: ^11.0.3
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   '@tailwindcss/line-clamp': 0.3.1_tailwindcss@3.0.23
+  direct-vuex: 1.0.0-rc3_vue@3.2.31+vuex@4.0.2
   gsap: 3.9.1
   path: 0.12.7
   popmotion: 11.0.3
@@ -498,6 +500,16 @@ packages:
   /didyoumean/1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
     dev: true
+
+  /direct-vuex/1.0.0-rc3_vue@3.2.31+vuex@4.0.2:
+    resolution: {integrity: sha512-oxpz9kPmxHxAgFC5jKqjziqCbAuGXxwQZbObYGx7D+a3666D6juxERMe40wa0BddzjXk6ZnbkCdD3UCWGTtZJQ==}
+    peerDependencies:
+      vue: '3'
+      vuex: '4'
+    dependencies:
+      vue: 3.2.31
+      vuex: 4.0.2_vue@3.2.31
+    dev: false
 
   /dlv/1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
