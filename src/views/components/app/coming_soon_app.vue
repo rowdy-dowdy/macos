@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import img from '/src/assets/icons/Apple AppStore icon Regular.png'
+import img from '/assets/icons/Apple AppStore icon Regular.png'
 
 </script>
 
