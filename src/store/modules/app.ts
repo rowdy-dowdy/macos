@@ -16,7 +16,7 @@ const state = (): State => ({
       display: false,
       title: 'Finder',
       name: 'coming_soon_app',
-      image: 'Finder Big Sur Regular.png'
+      image: '/assets/icons/Finder Big Sur Regular.png'
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const state = (): State => ({
       display: false,
       title: 'Launchpad',
       name: 'coming_soon_app',
-      image: 'Launchpad big sur icon regular.png'
+      image: '/assets/icons/Launchpad big sur icon regular.png'
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const state = (): State => ({
       display: false,
       title: 'Safari',
       name: 'coming_soon_app',
-      image: 'Big Sur Safari icon Regular.png'
+      image: '/assets/icons/Big Sur Safari icon Regular.png'
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ const state = (): State => ({
       display: false,
       title: 'iMessages',
       name: 'coming_soon_app',
-      image: 'iMessages Regular.png'
+      image: '/assets/icons/iMessages Regular.png'
     },
     {
       id: 6,
@@ -48,7 +48,7 @@ const state = (): State => ({
       display: false,
       title: 'Maps',
       name: 'coming_soon_app',
-      image: 'Apple Maps icon Regular.png'
+      image: '/assets/icons/Apple Maps icon Regular.png'
     },
     {
       id: 7,
@@ -56,7 +56,7 @@ const state = (): State => ({
       display: false,
       title: 'Photos',
       name: 'coming_soon_app',
-      image: 'Apple Photos icon Regular.png'
+      image: '/assets/icons/Apple Photos icon Regular.png'
     },
     {
       id: 8,
@@ -64,7 +64,7 @@ const state = (): State => ({
       display: false,
       title: 'Calendar',
       name: 'coming_soon_app',
-      image: 'Apple Calendar Regular.png'
+      image: '/assets/icons/Apple Calendar Regular.png'
     },
     {
       id: 9,
@@ -72,7 +72,7 @@ const state = (): State => ({
       display: false,
       title: 'Spotify',
       name: 'coming_soon_app',
-      image: 'Big Sur Spotify Altern Regular.png'
+      image: '/assets/icons/Big Sur Spotify Altern Regular.png'
     },
     {
       id: 10,
@@ -80,7 +80,7 @@ const state = (): State => ({
       display: false, 
       title: 'Discord',
       name: 'coming_soon_app',
-      image: 'Discord app icon Rgular.png'
+      image: '/assets/icons/Discord app icon Rgular.png'
     },
     {
       id: 11,
@@ -88,7 +88,7 @@ const state = (): State => ({
       display: true, 
       title: 'About app',
       name: 'about_app',
-      image: 'Apple Contacts icon Night Mode Regular.png'
+      image: '/assets/icons/Apple Contacts icon Night Mode Regular.png'
     },
     {
       id: 12,
@@ -96,7 +96,7 @@ const state = (): State => ({
       display: false, 
       title: 'AppStore',
       name: 'coming_soon_app',
-      image: 'Apple AppStore icon Regular.png'
+      image: '/assets/icons/Apple AppStore icon Regular.png'
     },
     {
       type: 'divine',
@@ -107,7 +107,7 @@ const state = (): State => ({
       display: false, 
       title: 'Terminal',
       name: 'coming_soon_app',
-      image: 'Big Sur Terminal icon Regular.png'
+      image: '/assets/icons/Big Sur Terminal icon Regular.png'
     },
     {
       id: 15,
@@ -115,7 +115,7 @@ const state = (): State => ({
       display: false, 
       title: 'Trash',
       name: 'coming_soon_app',
-      image: 'Big Sur trash empty.png'
+      image: '/assets/icons/Big Sur trash empty.png'
     },
   ]
 })
