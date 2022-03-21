@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { Component, computed, defineAsyncComponent, onMounted, ref, watch } from "vue";
-// import { useStore } from "vuex";
-import store from '../../store/index'
+import { useStore } from "../../store";
 import { AppInfo, AppDetails } from '../../models/app'
 // import LoadingComponent from "./loading_app.vue"
 // import ErrorComponent from "./error_app.vue"
 
-// const store = useStore()
-
+const store = useStore()
 
 const props = defineProps({
   item: {
-    requied: true,
+    required: true,
     // type: Object as PropType<AppInfo>,
     type: Object as () => AppInfo 
   }
@@ -33,6 +31,7 @@ const appComponent: Component = defineAsyncComponent({
   }
 })
 
+
 const state = ref<AppDetails>({
   full: false,
   x: 32,
@@ -43,7 +42,7 @@ const state = ref<AppDetails>({
 })
 
 
-const app = ref<HTMLElement>(null)
+const app = ref<HTMLElement | null>(null)
 const hold = ref(false)
 
 
@@ -85,8 +84,11 @@ const dragStart = (e: MouseEvent) => {
 
   hold.value = true
 
-  initialX = e.clientX - state.value.x;
-  initialY = e.clientY - state.value.y;
+  if (state.value.x)
+    initialX = e.clientX - state.value.x;
+
+  if (state.value.y)
+    initialY = e.clientY - state.value.y;
 }
 
 const drag = (e: MouseEvent) => {
@@ -135,19 +137,19 @@ onMounted( async () => {
 <template>
   <div ref="app"
     class="absolute shadow-md max-h-full"
-    :class="[{ 'transition-all duration-500': !hold }, { 'app_hide' : !props.item.show }]"
+    :class="[{ 'transition-all duration-500': !hold }, { 'app_hide' : !item.show }]"
     :style="[{ width: !state.full ? `${state.w}px` : '100%' }, 
       { height: !state.full ? `${state.h}px` : '100%' },
       { left: !state.full ? `${state.x}px` : '0' }, 
       { top: !state.full ? `${state.y}px` : '0' },
-      { zIndex: state.z_index }]"
+      { zIndex: state.z_index || 'initial' }]"
     >
     <div class="h-full flex flex-col overflow-hidden bg-white"
       :class="{ 'rounded-lg': !state.full }">
       <div class="flex-none flex justify-between px-4 py-1 select-none" 
         :class="{ 'cursor-move': hold }"
         v-on.prevent.stop="{ mousedown: dragStart, mouseup: dragEnd }">
-        <h1 class="capitalize">{{ props.item.title }}</h1>
+        <h1 class="capitalize">{{ item.title }}</h1>
 
         <div class="flex items-center space-x-2" @mousedown.prevent.stop="">
           <button class="w-4 h-4 bg-yellow-600 hover:bg-yellow-500 rounded-full"

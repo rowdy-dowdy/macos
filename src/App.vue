@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
-import { useStore } from "vuex";
+import { useStore } from "./store";
+import { User as UserType} from './models/user'
 
 const store = useStore()
 const route = useRoute()
@@ -9,10 +10,10 @@ const router = useRouter()
 
 const user = computed(() => store.state.user.user)
 
-const checkLoggin = (user) => {
+const checkLoggin = (user: UserType | null) => {
   if ( !user ) {
-      router.push({name: 'auth'})
-    }
+    router.push({name: 'auth'})
+  }
 }
 
 checkLoggin(user.value)

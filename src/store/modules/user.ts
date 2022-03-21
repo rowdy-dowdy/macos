@@ -1,7 +1,7 @@
 import { Commit } from 'vuex'
 import { User } from '../../models/user'
 
-interface State {
+export interface State {
   user: User | null
 }
 // initial state

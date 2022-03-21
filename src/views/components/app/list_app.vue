@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import app from '@/components/app/app.vue'
 import { computed, watch } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "../../../store";
 
 const store = useStore()
 const list_app_render = computed(() => store.state.app.list_app.filter(v => v.display == true))

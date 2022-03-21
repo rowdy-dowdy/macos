@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import bottomDockItem from './bottomDockItem.vue'
-import { useStore } from "vuex";
+import { useStore } from "../../../store";
 
 const store = useStore()
 
 const list = computed(() => store.state.app.list_app)
 
-const openApp = (e: Event , id: number) => {
+const openApp = (e: Event , id: number | undefined) => {
+  if (id === undefined) return
+  
   let index = list.value.findIndex(v => v.id == id)
-  let button: HTMLElement = e.target
+  let button: HTMLButtonElement | null = e.target as HTMLButtonElement
 
   if ( !list.value[index].display ) {
     store.commit('app/toogleDisplay',[ id, true ])
@@ -17,7 +19,8 @@ const openApp = (e: Event , id: number) => {
     if ( button ) {
       button.classList.remove('app_opening', 'app_showing')
       setTimeout(() => {
-        button.classList.add('app_opening')
+        if (button)
+          button.classList.add('app_opening')
       })
     }
   
@@ -27,7 +30,8 @@ const openApp = (e: Event , id: number) => {
     if ( button ) {
       button.classList.remove('app_showing', 'app_opening')
       setTimeout(() => {
-        button.classList.add('app_showing')
+        if (button)
+          button.classList.add('app_showing')
       })
     }
   }
@@ -63,7 +67,7 @@ onMounted(() => {
         @click="openApp($event, item.id)"/> -->
         
       <template v-for="(item,index) in list" :key="index">
-        <template v-if="item.name != 'divine'">
+        <template v-if="item.type != 'divine'">
           <bottom-dock-item 
             :item="item"
             :mouseX="mouseX"

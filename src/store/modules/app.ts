@@ -1,7 +1,7 @@
 import { Commit } from 'vuex'
 import { AppInfo } from '../../models/app'
 
-interface State {
+export interface State {
   index_app: number,
   list_app: Array<AppInfo>
 }

@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { interpolate, animate as ani } from 'popmotion';
+import { interpolate } from 'popmotion';
 import gsap from 'gsap'
-import { onUnmounted, ref, watch } from "vue"
-import { useStore } from "vuex"
+import { onUnmounted, ref, watch, PropType } from "vue"
+import { useStore } from "../../../store"
+import { AppInfo } from '../../../models/app'
 
 const props = defineProps({
   item: {
-    type: Object,
-    required: true
+    required: true,
+    type: Object as () => AppInfo
   },
-  mouseX: Number | null
+  mouseX: {
+    required: true,
+    type: Number as PropType<number | null>
+
+    // type: null as unknown as PropType<number | null>,
+    // validator: (v: any) => typeof v === 'number' || v === null,
+  }
 })
 
 const store = useStore()
@@ -37,14 +44,14 @@ let widthOutput = [
   baseWidth,
 ]
 
-const ref_button = ref<HTMLElement>(null)
+const ref_button = ref<HTMLElement | null>(null)
 const root = ref({
   width: baseWidth
 })
 
 const distance = ref(beyondTheDistanceLimit)
 
-var raf = null
+var raf: number | null = null
 
 function animate() {
   if (ref_button.value && props.mouseX) {
@@ -79,7 +86,8 @@ watch(
 )
 
 onUnmounted(() => {
-  cancelAnimationFrame(raf);
+  if (raf)
+    cancelAnimationFrame(raf);
 })
 
 </script>
