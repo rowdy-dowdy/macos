@@ -12,12 +12,14 @@ const props = defineProps({
   },
   mouseX: {
     required: true,
-    type: Number as PropType<number | null>
+    type: Number as PropType<number | null> // props not should be used type null
 
     // type: null as unknown as PropType<number | null>,
     // validator: (v: any) => typeof v === 'number' || v === null,
   }
 })
+
+const imageButton = new URL('/src/assets/icons/' + props.item.image, import.meta.url).href
 
 const store = useStore()
 
@@ -98,7 +100,7 @@ onUnmounted(() => {
     :style="{ 'width': root.width + 'px' }"
   >
     <div class="relative w-full pb-[100%]">
-      <img :src="'/src/assets/icons/' + item.image" alt="" class="absolute top-0 left-0 w-full h-full object-contain">
+      <img :src="imageButton" alt="" class="absolute top-0 left-0 w-full h-full object-contain">
     </div>
 
     <span v-if="item.display" class="absolute left-1/2 -bottom-2.5 block -translate-x-1/2 w-1 h-1 rounded-full bg-green-300 shadow-green-500"
